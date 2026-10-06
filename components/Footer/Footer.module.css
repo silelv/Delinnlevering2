@@ -1,0 +1,29 @@
+.footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  padding: 2rem 4rem;
+  background: var(--primary);
+  color: var(--background);
+}
+
+.footer a {
+  position: absolute;
+  right: 4rem;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 2rem 1.5rem;
+  }
+
+  .footer a {
+    right: 1.5rem;
+  }
+}

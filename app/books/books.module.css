@@ -1,0 +1,62 @@
+.booksPage {
+  width: 100%;
+}
+
+.intro {
+  padding: 5rem 8% 3rem;
+}
+
+.eyebrow {
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15rem;
+}
+
+.intro h1 {
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.intro p {
+  max-width: 550px;
+  line-height: 1.7;
+}
+
+.booksContent {
+  padding: 0 8% 5rem;
+}
+
+.search {
+  display: flex;
+  max-width: 650px;
+}
+
+.search input {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid var(--primary);
+  border-radius: 0.25rem 0 0 0.25rem;
+  background: transparent;
+  font: inherit;
+}
+
+.search button {
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--primary);
+  border-radius: 0 0.25rem 0.25rem 0;
+  background: var(--primary);
+  color: var(--background);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bookGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
