@@ -1,7 +1,7 @@
-import Link from "next/link";
 import styles from "./page.module.css";
-import BookCard from "@/components/BookCard/BookCard"; 
-import { searchBooks } from "@/lib/books"; 
+import BookCard from "@/components/BookCard/BookCard";
+import { searchBooks } from "@/lib/books";
+import Button from "@/components/Button/Button";
 
 const favoriteBooks = [
   "The Road of Bones Demi Winters",
@@ -14,7 +14,7 @@ export default async function Home() {
     favoriteBooks.map((favorite) => searchBooks(favorite)),
   );
 
-   const books = bookResults
+  const books = bookResults
     .map((results) => results[0])
     .filter((book) => book !== undefined);
 
@@ -35,9 +35,7 @@ export default async function Home() {
             enda bedre diskusjoner.
           </p>
 
-          <Link href="/books" className={styles.heroButton}>
-            Utforsk bøkene våre
-          </Link>
+          <Button text="Utforsk bøkene våre" href="/books" />
         </div>
       </section>
 
@@ -47,7 +45,7 @@ export default async function Home() {
           <h2>Topp 3 akkurat nå</h2>
         </div>
         <div className={styles.bookGrid}>
-           {books.map((book) => (
+          {books.map((book) => (
             <BookCard
               key={book.id}
               id={book.id}
@@ -57,6 +55,28 @@ export default async function Home() {
               cover={book.volumeInfo.imageLinks?.thumbnail}
             />
           ))}
+        </div>
+      </section>
+      <section className={styles.discover}>
+        <h2>Finn din neste bok</h2>
+
+        <Button text="Utforsk bøker" href="/books" />
+
+        <div className={styles.readerImage}>
+          <img
+            src="/images/readinggirl.png"
+            alt="Person som ligger på siden og leser en bok med fjell som utsikt"
+          />
+        </div>
+
+        <h2>Disse sjangrene er mest populære akkurat nå</h2>
+
+        <div className={styles.genreButtons}>
+          <Button text="Romantasy" href="/books?q=romantasy" />
+          <Button text="Krim" href="/books?q=krim" />
+          <Button text="Litteratur" href="/books?q=litteratur" />
+          <Button text="Fantasy" href="/books?q=fantasy" />
+          <Button text="Action" href="/books?q=action" />
         </div>
       </section>
     </main>

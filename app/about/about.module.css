@@ -1,0 +1,71 @@
+.aboutPage {
+  padding: 5rem 8%;
+}
+
+.aboutPage > h1 {
+  margin-bottom: 4rem;
+  color: var(--primary);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.aboutContent {
+  display: grid;
+  grid-template-columns: 300px 500px;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+}
+
+.imagePlaceholder {
+  width: 300px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e5e0d7;
+}
+
+.aboutText h2 {
+  margin-bottom: 2rem;
+  color: var(--primary);
+  font-size: 1.8rem;
+}
+
+.aboutText p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.explore {
+  margin-top: 6rem;
+  text-align: center;
+}
+
+.explore h2 {
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+  font-size: 1.6rem;
+}
+
+.explore p {
+  margin-bottom: 2rem;
+}
+
+.genreButtons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 800px) {
+  .aboutContent {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .imagePlaceholder {
+    margin: 0 auto;
+  }
+}
