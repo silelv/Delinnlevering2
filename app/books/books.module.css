@@ -141,3 +141,10 @@
 .error button:hover {
   opacity: 0.85;
 }
+
+@media (max-width: 500px) {
+  .resultsTitle {
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+  }
+}

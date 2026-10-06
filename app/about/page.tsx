@@ -7,9 +7,12 @@ export default function AboutPage() {
       <h1>Om Baddies Bokklubb</h1>
 
        <section className={styles.aboutContent}>
-        <div className={styles.imagePlaceholder}>
-          <span>Bilde av Silje</span>
-        </div>
+        <div className={styles.aboutImage}>
+  <img
+    src="/images/omsilje.png"
+    alt="Silje, personen bak Baddies Bokklubb"
+  />
+</div>
 
         <div className={styles.aboutText}>
           <h2>Velkommen til Baddies Bokklubb!</h2>
