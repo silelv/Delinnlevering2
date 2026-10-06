@@ -1,6 +1,6 @@
 import styles from "./books.module.css";
 import { searchBooks } from "@/lib/books";
-import BookCard from "@/components/BookCard/BookCard";
+import BookResults from "@/components/BookResults/BookResults";
 
 type BooksPageProps = {
   searchParams: Promise<{ q?: string }>;
@@ -30,25 +30,20 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
           />
 
           <button type="submit">Søk</button>
-</form>
-          {q && (
-            <h2 className={styles.resultsTitle}>Søkeresultater for "{q}"</h2>
-          )}
+        </form>
+    {q && (
+  <h2 className={styles.resultsTitle}>
+    Søkeresultater for "{q}"
+  </h2>
+)}
 
-          {q && books.length === 0 && <p>Ingen bøker funnet.</p>}
-        
-        <div className={styles.bookGrid}>
-          {books.slice(0, 12).map((book) => (
-            <BookCard
-              key={book.id}
-              id={book.id}
-              title={book.volumeInfo.title}
-              author={book.volumeInfo.authors?.join(", ") ?? "Ukjent forfatter"}
-              rating={book.volumeInfo.averageRating ?? 0}
-              cover={book.volumeInfo.imageLinks?.thumbnail}
-            />
-          ))}
-        </div>
+{q && books.length === 0 && (
+  <p>Ingen bøker funnet.</p>
+)}
+
+{q && books.length > 0 && (
+  <BookResults books={books} />
+)}
       </section>
     </main>
   );
