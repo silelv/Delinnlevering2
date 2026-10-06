@@ -40,18 +40,4 @@
   .bookGrid {
     grid-template-columns: 1fr;
   }
-  
-}
-
-.checkbox {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-left: 1rem;
-  font-weight: 400;
-  cursor: pointer;
-}
-
-.checkbox input {
-  cursor: pointer;
 }

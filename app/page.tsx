@@ -2,6 +2,7 @@ import styles from "./page.module.css";
 import BookCard from "@/components/BookCard/BookCard";
 import { searchBooks } from "@/lib/books";
 import Button from "@/components/Button/Button";
+import Image from "next/image";
 
 const favoriteBooks = [
   "The Road of Bones Demi Winters",
@@ -63,9 +64,11 @@ export default async function Home() {
         <Button text="Utforsk bøker" href="/books" />
 
         <div className={styles.readerImage}>
-          <img
+          <Image
             src="/images/readinggirl.png"
             alt="Person som ligger på siden og leser en bok med fjell som utsikt"
+            width={900}
+            height={350}
           />
         </div>
 
@@ -76,7 +79,6 @@ export default async function Home() {
           <Button text="Krim" href="/books?q=krim" />
           <Button text="Litteratur" href="/books?q=litteratur" />
           <Button text="Fantasy" href="/books?q=fantasy" />
-          <Button text="Action" href="/books?q=action" />
         </div>
       </section>
     </main>

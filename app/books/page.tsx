@@ -31,19 +31,11 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
 
           <button type="submit">Søk</button>
         </form>
-    {q && (
-  <h2 className={styles.resultsTitle}>
-    Søkeresultater for "{q}"
-  </h2>
-)}
+        {q && <h2 className={styles.resultsTitle}>Søkeresultater for «{q}»</h2>}
 
-{q && books.length === 0 && (
-  <p>Ingen bøker funnet.</p>
-)}
+        {q && books.length === 0 && <p>Ingen bøker funnet.</p>}
 
-{q && books.length > 0 && (
-  <BookResults books={books} />
-)}
+        {q && books.length > 0 && <BookResults books={books} />}
       </section>
     </main>
   );
