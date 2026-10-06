@@ -40,6 +40,7 @@
   .bookGrid {
     grid-template-columns: 1fr;
   }
+  
 }
 
 .checkbox {

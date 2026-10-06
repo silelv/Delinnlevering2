@@ -13,14 +13,14 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="nb" className={`${dmSans.variable} ${inter.variable}`}>
-      <body>
+      <body id="top">
         <Header />
-        {children}</body>
+        {children}
         <Footer />
+      </body>
     </html>
   );
 }

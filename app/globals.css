@@ -49,3 +49,11 @@ html {
   height: 100%;
   scroll-behavior: smooth;
 }
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
