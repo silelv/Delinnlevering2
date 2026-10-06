@@ -14,10 +14,8 @@ export default function BookResults({ books }: BookResultsProps) {
   let sortedBooks = [...books];
 
   if (sortBy === "onlyRated") {
-  sortedBooks = sortedBooks.filter(
-    (book) => book.volumeInfo.averageRating
-  );
-}
+    sortedBooks = sortedBooks.filter((book) => book.volumeInfo.averageRating);
+  }
   if (sortBy === "rating") {
     sortedBooks.sort(
       (a, b) =>
@@ -47,15 +45,12 @@ export default function BookResults({ books }: BookResultsProps) {
           value={sortBy}
           onChange={(event) => setSortBy(event.target.value)}
         >
-            <option value="titleAZ">Tittel A–Å</option>
+          <option value="titleAZ">Tittel A–Å</option>
           <option value="titleZA">Tittel Å–A</option>
           <option value="relevance">Relevans</option>
           <option value="rating">Høyest rating</option>
-            <option value="onlyRated">Kun bøker med rating</option>
-          
+          <option value="onlyRated">Kun bøker med rating</option>
         </select>
-
-    
       </div>
 
       <div className={styles.bookGrid}>

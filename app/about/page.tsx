@@ -1,18 +1,21 @@
 import styles from "./about.module.css";
 import Button from "@/components/Button/Button";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
     <main className={styles.aboutPage}>
       <h1>Om Baddies Bokklubb</h1>
 
-       <section className={styles.aboutContent}>
+      <section className={styles.aboutContent}>
         <div className={styles.aboutImage}>
-  <img
-    src="/images/omsilje.png"
-    alt="Silje, personen bak Baddies Bokklubb"
-  />
-</div>
+          <Image
+            src="/images/omsilje.png"
+            alt="Silje, personen bak Baddies Bokklubb"
+            width={300}
+            height={400}
+          />
+        </div>
 
         <div className={styles.aboutText}>
           <h2>Velkommen til Baddies Bokklubb!</h2>
@@ -28,19 +31,19 @@ export default function AboutPage() {
             Målet med nettsiden er å gjøre det enkelt og oversiktlig å oppdage
             nye bøker. Du kan utforske utvalgte anbefalinger, finne bøker etter
             sjanger og lese mer om blant annet forfatter, rating og innhold.
-            Nettsiden er utviklet av Silje Elvik som en del av studiet
-            Front-end utvikling ved Gokstad Akademiet. Nettsiden er bygget med
-            Next.js og TypeScript.
+            Nettsiden er utviklet av Silje Elvik som en del av studiet Front-end
+            utvikling ved Gokstad Akademiet. Nettsiden er bygget med Next.js og
+            TypeScript.
           </p>
 
           <p>
             Informasjonen om bøkene hentes fra Google Books API. Boktitler,
-            forfattere, bokomslag og annen bokinformasjon kommer derfor fra
-            data som er tilgjengelig gjennom Google Books.
+            forfattere, bokomslag og annen bokinformasjon kommer derfor fra data
+            som er tilgjengelig gjennom Google Books.
           </p>
         </div>
       </section>
-       <section className={styles.explore}>
+      <section className={styles.explore}>
         <h2>Klar for å finne din neste bok?</h2>
         <p>Utforsk sjangrene våre!</p>
         <div className={styles.genreButtons}>
@@ -50,7 +53,7 @@ export default function AboutPage() {
           <Button text="Fantasy" href="/books?q=fantasy" />
           <Button text="Action" href="/books?q=action" />
         </div>
-     </section>
+      </section>
     </main>
   );
 }

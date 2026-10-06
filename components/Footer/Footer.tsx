@@ -5,9 +5,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <p>© 2026 Baddies bokklubb</p>
 
-      <a href="#top">
-        Tilbake til toppen
-      </a>
+      <a href="#top">Tilbake til toppen</a>
     </footer>
   );
 }

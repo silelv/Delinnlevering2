@@ -54,13 +54,6 @@
   cursor: pointer;
 }
 
-.bookGrid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
 .resultsTitle {
   margin-top: 3rem;
   color: var(--primary);

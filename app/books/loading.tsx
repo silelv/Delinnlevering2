@@ -1,6 +1,5 @@
 import styles from "./books.module.css";
 
-
 export default function Loading() {
   return (
     <main className={styles.loading}>

@@ -7,6 +7,10 @@ type GoogleBooksResponse = {
 export async function searchBooks(query: string): Promise<Book[]> {
   const apiKey = process.env.GOOGLE_BOOKS_API_KEY;
 
+  if (!apiKey) {
+    throw new Error("Google Books API-nøkkel mangler.");
+  }
+
   const response = await fetch(
     `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&key=${apiKey}`,
   );
@@ -22,6 +26,10 @@ export async function searchBooks(query: string): Promise<Book[]> {
 
 export async function getBookById(id: string): Promise<Book> {
   const apiKey = process.env.GOOGLE_BOOKS_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("Google Books API-nøkkel mangler.");
+  }
 
   const response = await fetch(
     `https://www.googleapis.com/books/v1/volumes/${id}?key=${apiKey}`,
