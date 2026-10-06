@@ -1,10 +1,23 @@
 import Link from "next/link";
 import styles from "./page.module.css";
-import BookCard from "../components/BookCard/BookCard";
-import { searchBooks } from "../lib/books";
+import BookCard from "@/components/BookCard/BookCard"; 
+import { searchBooks } from "@/lib/books"; 
+
+const favoriteBooks = [
+  "The Road of Bones Demi Winters",
+  "Fourth Wing Rebecca Yarros",
+  "Project Hail Mary Andy Weir",
+];
 
 export default async function Home() {
-  const books = await searchBooks("Fourth Wing");
+  const bookResults = await Promise.all(
+    favoriteBooks.map((favorite) => searchBooks(favorite)),
+  );
+
+   const books = bookResults
+    .map((results) => results[0])
+    .filter((book) => book !== undefined);
+
   return (
     <main>
       <section className={styles.hero}>
@@ -34,12 +47,14 @@ export default async function Home() {
           <h2>Topp 3 akkurat nå</h2>
         </div>
         <div className={styles.bookGrid}>
-          {books.slice(0, 3).map((book) => (
+           {books.map((book) => (
             <BookCard
               key={book.id}
+              id={book.id}
               title={book.volumeInfo.title}
               author={book.volumeInfo.authors?.join(", ") ?? "Ukjent forfatter"}
               rating={book.volumeInfo.averageRating ?? 0}
+              cover={book.volumeInfo.imageLinks?.thumbnail}
             />
           ))}
         </div>

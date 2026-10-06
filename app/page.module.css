@@ -61,6 +61,19 @@
 
 .bookGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns:  repeat(3, minmax(0, 320px));
+  justify-content: center;
+  gap: 10rem;
+}
+
+@media (max-width: 800px) {
+  .bookGrid {
+    grid-template-columns: repeat(2, minmax(0, 200px));
+  }
+}
+
+@media (max-width: 500px) {
+  .bookGrid {
+    grid-template-columns: minmax(0, 220px);
+  }
 }
