@@ -60,3 +60,9 @@
   gap: 2rem;
   margin-top: 3rem;
 }
+
+.resultsTitle {
+  margin-top: 3rem;
+  color: var(--primary);
+  font-size: 1.5rem;
+}

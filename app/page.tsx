@@ -37,6 +37,7 @@ export default async function Home() {
           {books.slice(0, 3).map((book) => (
             <BookCard
               key={book.id}
+              id={book.id}
               title={book.volumeInfo.title}
               author={book.volumeInfo.authors?.join(", ") ?? "Ukjent forfatter"}
               rating={book.volumeInfo.averageRating ?? 0}
