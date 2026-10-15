@@ -13,6 +13,12 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+/**
+ * Hovedlayout for alle sidene, slik at de får samme oppbygning.
+ * @param children - Innholdet på siden som endres når brukeren bytter side.
+ * @returns Layouten med header, sideinnhold og footer.
+ */
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="nb" className={`${dmSans.variable} ${inter.variable}`}>

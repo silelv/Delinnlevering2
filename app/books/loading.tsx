@@ -1,5 +1,8 @@
 import styles from "./books.module.css";
 
+
+// bytt til suspense 
+
 export default function Loading() {
   return (
     <main className={styles.loading}>

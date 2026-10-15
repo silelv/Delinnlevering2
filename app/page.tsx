@@ -10,10 +10,22 @@ const favoriteBooks = [
   "Project Hail Mary Andy Weir",
 ];
 
+/**
+ * Viser forsiden og henter de utvalgte favorittbøkene fra Google Books API.
+ * @returns Forsiden med favorittbøker og lenker videre til bokoversikten.
+ */
+
 export default async function Home() {
   const bookResults = await Promise.all(
-    favoriteBooks.map((favorite) => searchBooks(favorite)),
-  );
+  favoriteBooks.map(async (favorite) => {
+    try {
+      return await searchBooks(favorite);
+    } catch (error) {
+      console.error("Kunne ikke hente favorittbok:", error);
+      return [];
+    }
+  }),
+);
 
   const books = bookResults
     .map((results) => results[0])
