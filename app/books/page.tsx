@@ -3,13 +3,23 @@ import { searchBooks } from "@/lib/books";
 import BookResults from "@/components/BookResults/BookResults";
 
 type BooksPageProps = {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string; page?: string }>;
 };
 
-export default async function BooksPage({ searchParams }: BooksPageProps) {
-  const { q } = await searchParams;
+const BOOKS_PER_PAGE = 12;
 
-  const books = q ? await searchBooks(q) : [];
+export default async function BooksPage({ searchParams }: BooksPageProps) {
+  const { q, page } = await searchParams;
+
+  const pageNumber = page ? parseInt(page) : 1;
+  const startIndex = (pageNumber - 1) * BOOKS_PER_PAGE;
+
+  const results = q
+    ? await searchBooks(q, startIndex, BOOKS_PER_PAGE)
+    : { items: [], totalItems: 0 };
+
+  const books = results.items ?? [];
+
 
   return (
     <main className={styles.booksPage}>
