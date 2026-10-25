@@ -12,11 +12,21 @@ const favoriteBooks = [
 
 export default async function Home() {
   const bookResults = await Promise.all(
-    favoriteBooks.map((favorite) => searchBooks(favorite)),
+    favoriteBooks.map(async (favorite) => {
+      try {
+        return await searchBooks(favorite);
+      } catch (error) {
+        console.error("Kunne ikke hente favorittbok:", favorite, error);
+        return {
+          items: [],
+          totalItems: 0,
+        };
+      }
+    }),
   );
 
   const books = bookResults
-    .map((results) => results[0])
+    .map((results) => results.items?.[0])
     .filter((book) => book !== undefined);
 
   return (
@@ -52,7 +62,7 @@ export default async function Home() {
               id={book.id}
               title={book.volumeInfo.title}
               author={book.volumeInfo.authors?.join(", ") ?? "Ukjent forfatter"}
-              rating={book.volumeInfo.averageRating ?? 0}
+              firstPublishYear={book.volumeInfo.firstPublishYear ?? 0}
               cover={book.volumeInfo.imageLinks?.thumbnail}
             />
           ))}

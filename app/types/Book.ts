@@ -4,7 +4,7 @@ export type Book = {
     title: string;
     authors?: string[];
     description?: string;
-    averageRating?: number;
+    firstPublishYear?: number;
     imageLinks?: {
       thumbnail?: string;
     };

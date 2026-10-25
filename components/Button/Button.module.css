@@ -12,3 +12,7 @@
 .button:hover {
   opacity: 0.85;
 }
+
+.backButton {
+ grid-column: 1 / -1;
+}
