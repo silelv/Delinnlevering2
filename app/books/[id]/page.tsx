@@ -1,25 +1,41 @@
 import { getBookById } from "@/lib/books";
 import styles from "./bookDetails.module.css";
 import Image from "next/image";
+import Button from "@/components/Button/Button";
 
 type BookDetailsPageProps = {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ q?: string; page?: string }>;
 };
 
 export default async function BookDetailsPage({
   params,
+  searchParams,
 }: BookDetailsPageProps) {
   const { id } = await params;
+  const { q, page } = await searchParams;
+
+  const backUrl = q
+    ? `/books?q=${encodeURIComponent(q)}&page=${page ?? 1}`
+    : "/books";
 
   const book = await getBookById(id);
   const description = book.volumeInfo.description
     ?.replace(/<[^>]*>/g, " ")
+    .replace(/\[[^\]]+\]\[\d+\]/g, "")
+    .replace(/\[\d+\]:\s*https?:\/\/\S+/g, "")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
     .replace(/\s+/g, " ")
     .trim();
 
   return (
     <main className={styles.bookPage}>
+      <div className={styles.backButton}>
+        <Button text="← Tilbake til søkeresultater" href={backUrl} />
+      </div>
       <section className={styles.bookDetails}>
         <div className={styles.cover}>
           {book.volumeInfo.imageLinks?.thumbnail && (
@@ -39,11 +55,11 @@ export default async function BookDetailsPage({
             {book.volumeInfo.authors?.join(", ") ?? "Ukjent forfatter"}
           </p>
 
-          <p className={styles.rating}>
-            {book.volumeInfo.averageRating
-              ? `${book.volumeInfo.averageRating} / 5 ⭐`
-              : "Ingen rating"}
-          </p>
+          {book.volumeInfo.firstPublishYear && (
+            <p className={styles.publishYear}>
+              Først utgitt i {book.volumeInfo.firstPublishYear}
+            </p>
+          )}
 
           <p className={styles.description}>
             {description || "Ingen beskrivelse tilgjengelig."}

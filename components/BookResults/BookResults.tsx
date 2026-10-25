@@ -7,19 +7,27 @@ import styles from "./BookResults.module.css";
 
 type BookResultsProps = {
   books: Book[];
+  query: string;
+  page: number;
 };
 
-export default function BookResults({ books }: BookResultsProps) {
+export default function BookResults({ books, query, page }: BookResultsProps) {
   const [sortBy, setSortBy] = useState("relevance");
   let sortedBooks = [...books];
 
-  if (sortBy === "onlyRated") {
-    sortedBooks = sortedBooks.filter((book) => book.volumeInfo.averageRating);
-  }
-  if (sortBy === "rating") {
+  if (sortBy === "newest") {
     sortedBooks.sort(
       (a, b) =>
-        (b.volumeInfo.averageRating ?? 0) - (a.volumeInfo.averageRating ?? 0),
+        (b.volumeInfo.firstPublishYear ?? 0) -
+        (a.volumeInfo.firstPublishYear ?? 0),
+    );
+  }
+
+  if (sortBy === "oldest") {
+    sortedBooks.sort(
+      (a, b) =>
+        (a.volumeInfo.firstPublishYear ?? Infinity) -
+        (b.volumeInfo.firstPublishYear ?? Infinity),
     );
   }
 
@@ -48,20 +56,22 @@ export default function BookResults({ books }: BookResultsProps) {
           <option value="titleAZ">Tittel A–Å</option>
           <option value="titleZA">Tittel Å–A</option>
           <option value="relevance">Relevans</option>
-          <option value="rating">Høyest rating</option>
-          <option value="onlyRated">Kun bøker med rating</option>
+          <option value="newest">Nyeste først</option>
+          <option value="oldest">Eldste først</option>
         </select>
       </div>
 
       <div className={styles.bookGrid}>
-        {sortedBooks.slice(0, 12).map((book) => (
+        {sortedBooks.map((book) => (
           <BookCard
             key={book.id}
             id={book.id}
             title={book.volumeInfo.title}
             author={book.volumeInfo.authors?.join(", ") ?? "Ukjent forfatter"}
-            rating={book.volumeInfo.averageRating ?? 0}
+            firstPublishYear={book.volumeInfo.firstPublishYear}
             cover={book.volumeInfo.imageLinks?.thumbnail}
+            query={query}
+            page={page}
           />
         ))}
       </div>

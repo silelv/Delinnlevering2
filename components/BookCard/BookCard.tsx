@@ -6,20 +6,24 @@ type BookCardProps = {
   id: string;
   title: string;
   author: string;
-  rating: number;
+  firstPublishYear?: number;
   cover?: string;
+  query?: string;
+  page?: number;
 };
 
 export default function BookCard({
   id,
   title,
   author,
-  rating,
+  firstPublishYear,
   cover,
+  query,
+  page,
 }: BookCardProps) {
   return (
     <article className={styles.card}>
-      <Link href={`/books/${id}`}>
+      <Link href={`/books/${id}?q=${encodeURIComponent(query ?? "")}&page=${page ?? 1}`}>
         <div className={styles.cover}>
           {cover ? (
             <Image
@@ -35,7 +39,7 @@ export default function BookCard({
 
         <h3>{title}</h3>
         <p>{author}</p>
-        <p>{rating > 0 ? `${rating} / 5 ⭐` : "Ingen rating"}</p>
+        {firstPublishYear && <p>Først utgitt i {firstPublishYear}</p>}
       </Link>
     </article>
   );

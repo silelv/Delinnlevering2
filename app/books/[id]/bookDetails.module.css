@@ -38,9 +38,10 @@
   font-size: 1.1rem;
 }
 
-.rating {
-  margin-bottom: 2rem;
-  font-weight: 600;
+.publishYear {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+   color: var(--primary);
 }
 
 .description {
@@ -49,6 +50,10 @@
 }
 
 @media (max-width: 700px) {
+
+   .bookPage {
+    padding: 2rem 5%;
+  }
   .bookDetails {
     grid-template-columns: 1fr;
     gap: 2rem;

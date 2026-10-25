@@ -5,11 +5,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "books.google.com",
+        hostname: "covers.openlibrary.org",
       },
       {
         protocol: "http",
-        hostname: "books.google.com",
+        hostname: "covers.openlibrary.org",
       },
     ],
   },
