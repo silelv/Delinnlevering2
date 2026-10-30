@@ -1,0 +1,12 @@
+.genreButtons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 500px) {
+  .genreButtons {
+    gap: 0.75rem;
+  }
+}

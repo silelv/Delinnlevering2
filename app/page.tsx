@@ -3,6 +3,7 @@ import BookCard from "@/components/BookCard/BookCard";
 import { searchBooks } from "@/lib/books";
 import Button from "@/components/Button/Button";
 import Image from "next/image";
+import GenreButtons from "@/components/GenreButtons/GenreButtons";
 
 const favoriteBooks = [
   "The Road of Bones Demi Winters",
@@ -26,11 +27,13 @@ export default async function Home() {
   );
 
   const books = bookResults
-    .map((results) => results.items?.[0])
+    .map((results) => results.items[0])
     .filter((book) => book !== undefined);
 
+    
+
   return (
-    <main>
+    <div>
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <p className={styles.eyebrow}>BADDIES BOKKLUBB</p>
@@ -60,10 +63,11 @@ export default async function Home() {
             <BookCard
               key={book.id}
               id={book.id}
-              title={book.volumeInfo.title}
-              author={book.volumeInfo.authors?.join(", ") ?? "Ukjent forfatter"}
-              firstPublishYear={book.volumeInfo.firstPublishYear}
-              cover={book.volumeInfo.imageLinks?.thumbnail}
+              title={book.title}
+              author={book.authors?.join(", ") ?? "Ukjent forfatter"}
+              firstPublishYear={book.firstPublishYear}
+              cover={book.cover}
+              fromHome
             />
           ))}
         </div>
@@ -84,13 +88,8 @@ export default async function Home() {
 
         <h2>Disse sjangrene er mest populære akkurat nå</h2>
 
-        <div className={styles.genreButtons}>
-          <Button text="Romantasy" href="/books?q=romantasy" />
-          <Button text="Krim" href="/books?q=krim" />
-          <Button text="Litteratur" href="/books?q=litteratur" />
-          <Button text="Fantasy" href="/books?q=fantasy" />
-        </div>
+        <GenreButtons />
       </section>
-    </main>
+    </div>
   );
 }

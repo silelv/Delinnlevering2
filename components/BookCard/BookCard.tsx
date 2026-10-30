@@ -10,6 +10,7 @@ type BookCardProps = {
   cover?: string;
   query?: string;
   page?: number;
+  fromHome?: boolean;
 };
 
 export default function BookCard({
@@ -20,10 +21,15 @@ export default function BookCard({
   cover,
   query,
   page,
+  fromHome
 }: BookCardProps) {
-   const bookUrl = query
-    ? `/books/${id}?q=${encodeURIComponent(query)}&page=${page ?? 1}`
-    : `/books/${id}`;
+     let bookUrl = `/books/${id}`;
+
+  if (query) {
+    bookUrl = `/books/${id}?q=${encodeURIComponent(query)}&page=${page ?? 1}`;
+  } else if (fromHome) {
+    bookUrl = `/books/${id}?from=home`;
+  }
   return (
     <article className={styles.card}>
       <Link href={bookUrl}>

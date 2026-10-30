@@ -1,5 +1,5 @@
 .card {
-  display: flex;
+  display: block;
 }
 
 .cover {
@@ -29,4 +29,8 @@
 .card p {
   font-size: 0.9rem;
   line-height: 1.4;
+}
+
+.card a {
+  display: block;
 }

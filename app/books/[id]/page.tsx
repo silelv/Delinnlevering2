@@ -5,7 +5,7 @@ import Button from "@/components/Button/Button";
 
 type BookDetailsPageProps = {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ q?: string; page?: string }>;
+  searchParams: Promise<{ q?: string; page?: string; from?: string }>;
 };
 
 export default async function BookDetailsPage({
@@ -13,49 +13,60 @@ export default async function BookDetailsPage({
   searchParams,
 }: BookDetailsPageProps) {
   const { id } = await params;
-  const { q, page } = await searchParams;
+  const { q, page, from } = await searchParams;
 
-  const backUrl = q
-    ? `/books?q=${encodeURIComponent(q)}&page=${page ?? 1}`
-    : "/books";
+  let backUrl = "/books";
+  let backText = "← Tilbake til bøkene";
+
+  if (q) {
+    backUrl = `/books?q=${encodeURIComponent(q)}&page=${page ?? 1}`;
+    backText = "← Tilbake til søkeresultater";
+  } else if (from === "home") {
+    backUrl = "/";
+    backText = "← Tilbake til forsiden";
+  }
 
   const book = await getBookById(id);
-  const description = book.volumeInfo.description
-    ?.replace(/<[^>]*>/g, " ")
-    .replace(/\[[^\]]+\]\[\d+\]/g, "")
-    .replace(/\[\d+\]:\s*https?:\/\/\S+/g, "")
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-    .replace(/&amp;/g, "&")
+  const description = book.description
+    ?.replace(/<[^>]*>/g, " ") // fjerner HTML-tagger, f.eks. <br>
+    .replace(/\[[^\]]+\]\[\d+\]/g, "") // fjerner lenker som [tekst][1]
+    .replace(/\[\d+\]:\s*https?:\/\/\S+/g, "") // fjerner kildelister som [1]: https://...
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // [tekst](url) blir bare tekst
+    .replace(/&amp;/g, "&") // HTML-koder blir vanlige tegn
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
-    .replace(/\s+/g, " ")
+    .replace(/\s+/g, " ") // doble mellomrom og linjeskift blir ett mellomrom
     .trim();
 
   return (
-    <main className={styles.bookPage}>
-      <Button text="← Tilbake til søkeresultater" href={backUrl} />
+    <div className={styles.bookPage}>
+      <Button
+        text={backText} href={backUrl}
+      />
       <section className={styles.bookDetails}>
         <div className={styles.cover}>
-          {book.volumeInfo.imageLinks?.thumbnail && (
+          {book.cover ? (
             <Image
-              src={book.volumeInfo.imageLinks.thumbnail}
-              alt={`Forsiden til ${book.volumeInfo.title}`}
+              src={book.cover}
+              alt={`Forsiden til ${book.title}`}
               width={300}
               height={450}
             />
+          ) : (
+            <div className={styles.noCover}>Ingen cover</div>
           )}
         </div>
 
         <div className={styles.bookInfo}>
-          <h1>{book.volumeInfo.title}</h1>
+          <h1>{book.title}</h1>
 
           <p className={styles.author}>
-            {book.volumeInfo.authors?.join(", ") ?? "Ukjent forfatter"}
+            {book.authors?.join(", ") ?? "Ukjent forfatter"}
           </p>
 
-          {book.volumeInfo.firstPublishYear && (
+          {book.firstPublishYear && (
             <p className={styles.publishYear}>
-              Først utgitt i {book.volumeInfo.firstPublishYear}
+              Først utgitt i {book.firstPublishYear}
             </p>
           )}
 
@@ -64,6 +75,6 @@ export default async function BookDetailsPage({
           </p>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

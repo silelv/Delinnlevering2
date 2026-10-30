@@ -29,6 +29,17 @@
   padding: 0 8% 5rem;
 }
 
+.searchLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.resultsCount {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
 .search {
   display: flex;
   max-width: 650px;

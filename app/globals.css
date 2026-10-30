@@ -53,3 +53,11 @@ select:focus-visible {
   outline: 3px solid var(--primary);
   outline-offset: 4px;
 }
+
+.eyebrow {
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15rem;
+}
