@@ -24,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="nb" className={`${dmSans.variable} ${inter.variable}`}>
       <body id="top">
         <Header />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

@@ -1,4 +1,5 @@
 import type { Book } from "@/app/types/Book";
+import { notFound } from "next/navigation";
 
 type OpenLibraryWork = {
   key: string;
@@ -35,10 +36,9 @@ type SearchBooksResult = {
 
 export async function searchBooks(
   query: string,
-  startIndex = 0,
+  page = 1,
   maxResults = 12,
 ): Promise<SearchBooksResult> {
-  const page = Math.floor(startIndex / maxResults) + 1;
 
   const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&page=${page}&limit=${maxResults}`;
 
@@ -52,16 +52,12 @@ export async function searchBooks(
 
   const books: Book[] = data.docs.map((book) => ({
     id: book.key.split("/").pop() ?? "",
-    volumeInfo: {
-      title: book.title,
-      authors: book.author_name,
-      firstPublishYear: book.first_publish_year,
-      imageLinks: book.cover_i
-        ? {
-            thumbnail: `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`,
-          }
-        : undefined,
-    },
+    title: book.title,
+    authors: book.author_name,
+    firstPublishYear: book.first_publish_year,
+    cover: book.cover_i
+      ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
+      : undefined,
   }));
 
   return {
@@ -75,6 +71,10 @@ export async function getBookById(id: string): Promise<Book> {
     `https://openlibrary.org/works/${encodeURIComponent(id)}.json`,
   );
 
+  if (response.status === 404) {
+    notFound();
+  }
+
   if (!response.ok) {
     throw new Error(`Kunne ikke hente bok: ${response.status}`);
   }
@@ -83,15 +83,15 @@ export async function getBookById(id: string): Promise<Book> {
 
   const authors = await Promise.all(
     (data.authors ?? []).map(async (item) => {
-      const response = await fetch(
+      const authorResponse = await fetch(
         `https://openlibrary.org${item.author.key}.json`,
       );
 
-      if (!response.ok) {
+      if (!authorResponse.ok) {
         return "Ukjent forfatter";
       }
 
-      const author: OpenLibraryAuthor = await response.json();
+      const author: OpenLibraryAuthor = await authorResponse.json();
 
       return author.name;
     }),
@@ -102,23 +102,18 @@ export async function getBookById(id: string): Promise<Book> {
       ? data.description
       : data.description?.value;
 
-  const firstPublishYear = data.first_publish_date
-    ? Number(data.first_publish_date.match(/\d{4}/)?.[0])
-    : undefined;
+  const year = data.first_publish_date?.match(/\d{4}/)?.[0];
+  const firstPublishYear = year ? Number(year) : undefined;
 
   const book: Book = {
     id: data.key.split("/").pop() ?? "",
-    volumeInfo: {
-      title: data.title,
-      authors: authors,
-      firstPublishYear: firstPublishYear,
-      description: description,
-      imageLinks: data.covers?.[0]
-        ? {
-            thumbnail: `https://covers.openlibrary.org/b/id/${data.covers[0]}-M.jpg`,
-          }
-        : undefined,
-    },
+    title: data.title,
+    authors: authors,
+    firstPublishYear: firstPublishYear,
+    description: description,
+    cover: data.covers?.[0]
+      ? `https://covers.openlibrary.org/b/id/${data.covers[0]}-M.jpg`
+      : undefined,
   };
 
   return book;

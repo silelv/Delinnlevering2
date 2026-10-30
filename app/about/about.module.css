@@ -56,13 +56,6 @@
   margin-bottom: 2rem;
 }
 
-.genreButtons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
 @media (max-width: 800px) {
   .aboutContent {
     grid-template-columns: 1fr;

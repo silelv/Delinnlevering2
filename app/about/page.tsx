@@ -1,6 +1,7 @@
 import styles from "./about.module.css";
 import Button from "@/components/Button/Button";
 import Image from "next/image";
+import GenreButtons from "@/components/GenreButtons/GenreButtons";
 
 export default function AboutPage() {
   return (
@@ -40,20 +41,13 @@ export default function AboutPage() {
             Informasjonen om bøkene hentes fra Open Library API. Boktitler,
             forfattere, bokomslag og annen bokinformasjon kommer derfor fra data
             som er tilgjengelig gjennom Open Library.
-            
           </p>
         </div>
       </section>
       <section className={styles.explore}>
         <h2>Klar for å finne din neste bok?</h2>
         <p>Utforsk sjangrene våre!</p>
-        <div className={styles.genreButtons}>
-          <Button text="Romantasy" href="/books?q=romantasy" />
-          <Button text="Krim" href="/books?q=krim" />
-          <Button text="Litteratur" href="/books?q=litteratur" />
-          <Button text="Fantasy" href="/books?q=fantasy" />
-          <Button text="Action" href="/books?q=action" />
-        </div>
+        <GenreButtons />
       </section>
     </main>
   );

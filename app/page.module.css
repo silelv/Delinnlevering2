@@ -80,12 +80,7 @@
   object-fit: cover;
 }
 
-.genreButtons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
+
 @media (max-width: 800px) {
   .bookGrid {
     grid-template-columns: repeat(2, minmax(0, 200px));

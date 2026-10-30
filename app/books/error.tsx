@@ -8,7 +8,7 @@ type ErrorProps = {
 
 export default function Error({ reset }: ErrorProps) {
   return (
-    <main className={styles.error}>
+    <div className={styles.error}>
       <p className={styles.errorCode}>OOPS!</p>
 
       <h1>Noe gikk galt</h1>
@@ -19,6 +19,6 @@ export default function Error({ reset }: ErrorProps) {
       </p>
 
       <button onClick={reset}>Prøv igjen</button>
-    </main>
+    </div>
   );
 }
