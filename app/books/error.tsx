@@ -18,7 +18,7 @@ export default function Error({ reset }: ErrorProps) {
         øyeblikk.
       </p>
 
-      <button onClick={() => reset()}>Prøv igjen</button>
+      <button onClick={reset}>Prøv igjen</button>
     </main>
   );
 }

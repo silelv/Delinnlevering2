@@ -62,7 +62,7 @@ export default async function Home() {
               id={book.id}
               title={book.volumeInfo.title}
               author={book.volumeInfo.authors?.join(", ") ?? "Ukjent forfatter"}
-              firstPublishYear={book.volumeInfo.firstPublishYear ?? 0}
+              firstPublishYear={book.volumeInfo.firstPublishYear}
               cover={book.volumeInfo.imageLinks?.thumbnail}
             />
           ))}

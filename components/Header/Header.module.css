@@ -8,10 +8,8 @@
 }
 
 .logo {
-  font-family: var(--font-dm-sans), sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary);
+  display: flex;
+  align-items: center;
 }
 
 .nav {
@@ -31,10 +29,6 @@
   color: var(--primary);
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-}
 
 .logo img {
   width: 80px;
@@ -45,12 +39,10 @@
 @media (max-width: 600px) {
   .header {
     padding: 1.5rem 8%;
-    justify-content: space-between;
   }
 
   .logo img {
     width: 70px;
-    height: auto;
   }
 
   .nav {

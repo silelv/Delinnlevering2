@@ -1,7 +1,13 @@
 import { DM_Sans, Inter } from "next/font/google";
+import type { Metadata } from "next";
 import "./globals.css";
-import Header from "../components/Header/Header";
+import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+
+export const metadata: Metadata = {
+  title: "Baddies Bokklubb",
+  description: "Bøker er bedre når vi leser dem sammen.",
+};
 
 const dmSans = DM_Sans({
   subsets: ["latin"],

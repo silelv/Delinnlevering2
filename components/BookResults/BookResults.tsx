@@ -46,7 +46,7 @@ export default function BookResults({ books, query, page }: BookResultsProps) {
   return (
     <>
       <div className={styles.sort}>
-        <label htmlFor="sort">Sorter / filtrer etter:</label>
+        <label htmlFor="sort">Sorter etter:</label>
 
         <select
           id="sort"

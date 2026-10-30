@@ -37,9 +37,10 @@ export default function AboutPage() {
           </p>
 
           <p>
-            Informasjonen om bøkene hentes fra Google Books API. Boktitler,
+            Informasjonen om bøkene hentes fra Open Library API. Boktitler,
             forfattere, bokomslag og annen bokinformasjon kommer derfor fra data
-            som er tilgjengelig gjennom Google Books.
+            som er tilgjengelig gjennom Open Library.
+            
           </p>
         </div>
       </section>

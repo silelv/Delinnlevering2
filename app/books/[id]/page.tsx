@@ -33,9 +33,7 @@ export default async function BookDetailsPage({
 
   return (
     <main className={styles.bookPage}>
-      <div className={styles.backButton}>
-        <Button text="← Tilbake til søkeresultater" href={backUrl} />
-      </div>
+      <Button text="← Tilbake til søkeresultater" href={backUrl} />
       <section className={styles.bookDetails}>
         <div className={styles.cover}>
           {book.volumeInfo.imageLinks?.thumbnail && (

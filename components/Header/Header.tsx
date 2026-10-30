@@ -7,11 +7,11 @@ export default function Header() {
     <header className={styles.header}>
       <Link href="/" className={styles.logo}>
         <Image
-  src="/images/logo.svg"
-  alt="Baddies Bokklubb"
-  width={70}
-  height={70}
-/>
+          src="/images/logo.svg"
+          alt="Baddies Bokklubb"
+          width={70}
+          height={70}
+        />
       </Link>
 
       <nav className={styles.nav} aria-label="Hovedmeny">

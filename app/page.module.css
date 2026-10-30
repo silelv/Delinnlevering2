@@ -49,7 +49,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 320px));
   justify-content: center;
-  gap: 10rem;
+  gap: 2rem;
 }
 
 .discover {
