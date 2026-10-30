@@ -96,9 +96,6 @@ export async function getBookById(id: string): Promise<Book> {
       return author.name;
     }),
   );
-  if (!response.ok) {
-    throw new Error(`Kunne ikke hente bok: ${response.status}`);
-  }
 
   const description =
     typeof data.description === "string"

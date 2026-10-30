@@ -21,9 +21,12 @@ export default function BookCard({
   query,
   page,
 }: BookCardProps) {
+   const bookUrl = query
+    ? `/books/${id}?q=${encodeURIComponent(query)}&page=${page ?? 1}`
+    : `/books/${id}`;
   return (
     <article className={styles.card}>
-      <Link href={`/books/${id}?q=${encodeURIComponent(query ?? "")}&page=${page ?? 1}`}>
+      <Link href={bookUrl}>
         <div className={styles.cover}>
           {cover ? (
             <Image
