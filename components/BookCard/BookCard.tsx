@@ -29,7 +29,14 @@ export default function BookCard({
     bookUrl = `/books/${id}?q=${encodeURIComponent(query)}&page=${page ?? 1}`;
   } else if (fromHome) {
     bookUrl = `/books/${id}?from=home`;
+      } else if (fromHome) {
+    bookUrl = `/books/${id}?from=home`;
+  } else if (page && page > 1) {
+    bookUrl = `/books/${id}?page=${page}`;
   }
+  
+  
+
   return (
     <article className={styles.card}>
       <Link href={bookUrl}>
