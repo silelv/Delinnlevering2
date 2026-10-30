@@ -24,6 +24,11 @@ export default async function BookDetailsPage({
   } else if (from === "home") {
     backUrl = "/";
     backText = "← Tilbake til forsiden";
+  } else if (from === "home") {
+    backUrl = "/";
+    backText = "← Tilbake til forsiden";
+  } else if (page) {
+    backUrl = `/books?page=${page}`;
   }
 
   const book = await getBookById(id);
@@ -40,9 +45,7 @@ export default async function BookDetailsPage({
 
   return (
     <div className={styles.bookPage}>
-      <Button
-        text={backText} href={backUrl}
-      />
+      <Button text={backText} href={backUrl} />
       <section className={styles.bookDetails}>
         <div className={styles.cover}>
           {book.cover ? (
