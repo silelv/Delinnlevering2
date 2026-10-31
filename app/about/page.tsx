@@ -1,6 +1,6 @@
 import styles from "./about.module.css";
-import Button from "@/components/Button/Button";
 import Image from "next/image";
+import GenreButtons from "@/components/GenreButtons/GenreButtons";
 
 export default function AboutPage() {
   return (
@@ -46,6 +46,7 @@ export default function AboutPage() {
       <section className={styles.explore}>
         <h2>Klar for å finne din neste bok?</h2>
         <p>Utforsk sjangrene våre!</p>
+        <GenreButtons />
       </section>
     </div>
   );
