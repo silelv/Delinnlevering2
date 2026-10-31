@@ -61,6 +61,5 @@ Les mer på [openlibrary.org/developers/api](https://openlibrary.org/developers/
 
 - Sorteringen gjelder bare bøkene som vises på den aktuelle siden (12 om gangen), ikke hele søkeresultatet. Dette står også på nettsiden.
 - Noen bøker har bokomslag i søkeresultatene, men ikke på detaljsiden. Det skyldes at Open Library har ulike data i søke-API-et og bok-API-et. Da vises en plassholder.
-- Sjangerknappene søker med `subject:`, og dette vises i søkefeltet etter at man har trykket på en sjanger.
 - Datakvaliteten avhenger av Open Library. Noen bøker mangler beskrivelse, utgivelsesår eller forfatter.
 - Hvis Open Library er nede eller tregt, kan sidene bruke lang tid på å laste eller vise en feilmelding.
