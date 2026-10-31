@@ -5,7 +5,7 @@ import GenreButtons from "@/components/GenreButtons/GenreButtons";
 
 export default function AboutPage() {
   return (
-    <main className={styles.aboutPage}>
+    <div className={styles.aboutPage}>
       <h1>Om Baddies Bokklubb</h1>
 
       <section className={styles.aboutContent}>
@@ -31,14 +31,13 @@ export default function AboutPage() {
           <p>
             Målet med nettsiden er å gjøre det enkelt og oversiktlig å oppdage
             nye bøker. Du kan utforske utvalgte anbefalinger, finne bøker etter
-            sjanger og lese mer om blant annet forfatter, rating og innhold.
+            sjanger og lese mer om blant annet forfatter, utgivelsesår og handling.
             Nettsiden er utviklet av Silje Elvik som en del av studiet Front-end
             utvikling ved Gokstad Akademiet. Nettsiden er bygget med Next.js og
             TypeScript.
           </p>
-
           <p>
-            Informasjonen om bøkene hentes fra Open Library API. Boktitler,
+            Informasjonen om bøkene hentes fra <a href="https://openlibrary.org">Open Library</a> sitt API. Boktitler,
             forfattere, bokomslag og annen bokinformasjon kommer derfor fra data
             som er tilgjengelig gjennom Open Library.
           </p>
@@ -49,6 +48,6 @@ export default function AboutPage() {
         <p>Utforsk sjangrene våre!</p>
         <GenreButtons />
       </section>
-    </main>
+    </div>
   );
 }
