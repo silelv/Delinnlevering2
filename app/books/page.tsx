@@ -38,7 +38,7 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
             type="search"
             id="q"
             name="q"
-            defaultValue={q ?? ""}
+            defaultValue={genre ? "" : q ?? ""}
             placeholder="Søk etter f.eks. Fourth Wing..."
           />
 
