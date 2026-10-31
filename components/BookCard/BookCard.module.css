@@ -33,4 +33,16 @@
 
 .card a {
   display: block;
+  transition: transform 0.2s ease;
+}
+
+.card a:hover,
+.card a:focus-visible {
+  transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card a {
+    transition: none;
+  }
 }

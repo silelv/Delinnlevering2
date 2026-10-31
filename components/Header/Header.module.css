@@ -27,6 +27,9 @@
 
 .nav a:hover {
   color: var(--primary);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.4rem;
 }
 
 .logo img {

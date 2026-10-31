@@ -1,6 +1,7 @@
 # Baddies Bokklubb 📚
 
 Baddies Bokklubb er en nettside hvor brukere kan søke etter bøker, utforske bokinformasjon og finne nye bøker å lese.
+Denne bokklubben er laget for deg som liker å lese, eller som bare trenger litt hjelp til å finne den neste boka på leselisten. 
 
 Prosjektet er utviklet som en skoleoppgave ved Gokstad Akademiet.
 
@@ -18,12 +19,12 @@ Prosjektet er utviklet med:
 
 Nettsiden inneholder:
 
-- En forside med utvalgte bøker.
-- En søkefunksjon for å finne bøker.
-- Sortering av søkeresultater.
-- En detaljside med informasjon om hver bok.
-- Navigasjon mellom sidene.
-- Responsivt design for mobil og desktop.
+- En oversiktsside med bøker, også før brukeren har søkt.
+- Søk etter tittel eller forfatter, og snarveier til populære sjangre.
+- Sortering etter tittel og utgivelsesår.
+- Paginering, slik at man kan bla mellom sider med resultater.
+- En om-side med informasjon om nettstedet.
+- Feilmeldinger når data ikke kan hentes, og egen 404-side for bøker og sider som ikke finnes.
 
 Bokinformasjonen hentes fra Open Library API.
 
@@ -32,7 +33,8 @@ Bokinformasjonen hentes fra Open Library API.
 Først må du installere nødvendige pakker:
 
 ```bash
-npm install
+npm run build
+npm start
 ```
 
 Start deretter utviklingsserveren:
@@ -47,9 +49,18 @@ npm run dev
 
 - `app/` – Sidene i nettsiden.
 - `components/` – Gjenbrukbare komponenter.
-- `lib/` – Funksjoner for å hente bokinformasjon fra API-et.
+- `lib/` – Funksjoner for å hente bokinformasjon fra API-et, og listen over sjangre.
 - `app/types/` – TypeScript-typer.
 
 ## API
 
-Prosjektet bruker Open Library API til å hente informasjon om bøker, blant annet titler, forfattere, utgivelsesår, beskrivelser og bokomslag.
+API-et er åpent og krever ingen API-nøkkel eller annen konfigurasjon.
+Les mer på [openlibrary.org/developers/api](https://openlibrary.org/developers/api).
+
+## Kjente begrensninger
+
+- Sorteringen gjelder bare bøkene som vises på den aktuelle siden (12 om gangen), ikke hele søkeresultatet. Dette står også på nettsiden.
+- Noen bøker har bokomslag i søkeresultatene, men ikke på detaljsiden. Det skyldes at Open Library har ulike data i søke-API-et og bok-API-et. Da vises en plassholder.
+- Sjangerknappene søker med `subject:`, og dette vises i søkefeltet etter at man har trykket på en sjanger.
+- Datakvaliteten avhenger av Open Library. Noen bøker mangler beskrivelse, utgivelsesår eller forfatter.
+- Hvis Open Library er nede eller tregt, kan sidene bruke lang tid på å laste eller vise en feilmelding.
