@@ -5,4 +5,5 @@ export type Book = {
   description?: string;
   firstPublishYear?: number;
   cover?: string;
+  subjects?: string[];
 };

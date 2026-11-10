@@ -46,3 +46,11 @@
     transition: none;
   }
 }
+
+@media (max-width: 500px) {
+  .card a {
+    padding: 1rem;
+    border: 1px solid #d8d2c7;
+    border-radius: 0.5rem;
+  }
+}

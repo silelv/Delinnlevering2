@@ -63,3 +63,4 @@ Les mer på [openlibrary.org/developers/api](https://openlibrary.org/developers/
 - Noen bøker har bokomslag i søkeresultatene, men ikke på detaljsiden. Det skyldes at Open Library har ulike data i søke-API-et og bok-API-et. Da vises en plassholder.
 - Datakvaliteten avhenger av Open Library. Noen bøker mangler beskrivelse, utgivelsesår eller forfatter.
 - Hvis Open Library er nede eller tregt, kan sidene bruke lang tid på å laste eller vise en feilmelding.
+- Utgivelsesåret kan være forskjellig i boklisten og på detaljsiden. Boklisten bruker søke-API-et (`first_publish_year`), mens detaljsiden bruker bok-API-et (`first_publish_date`), og Open Library har ikke alltid samme verdi i disse feltene. Dette står også på detaljsiden.

@@ -3,10 +3,10 @@
 import styles from "./books.module.css";
 
 type ErrorProps = {
-  reset: () => void;
+  unstable_retry: () => void;
 };
 
-export default function Error({ reset }: ErrorProps) {
+export default function Error({ unstable_retry }: ErrorProps) {
   return (
     <div className={styles.error}>
       <p className={styles.errorCode}>OOPS!</p>
@@ -14,11 +14,10 @@ export default function Error({ reset }: ErrorProps) {
       <h1>Noe gikk galt</h1>
 
       <p>
-        Vi klarte ikke å hente bøkene akkurat nå. Prøv igjen om et lite
-        øyeblikk.
+        Vi klarte ikke å hente innholdet akkurat nå.
       </p>
 
-      <button onClick={reset}>Prøv igjen</button>
+      <button onClick={unstable_retry}>Prøv igjen</button>
     </div>
   );
 }
