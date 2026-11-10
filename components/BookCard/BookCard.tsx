@@ -21,21 +21,19 @@ export default function BookCard({
   cover,
   query,
   page,
-  fromHome
+  fromHome,
 }: BookCardProps) {
-     let bookUrl = `/books/${id}`;
+  let bookUrl = `/books/${id}`;
 
   if (query) {
     bookUrl = `/books/${id}?q=${encodeURIComponent(query)}&page=${page ?? 1}`;
   } else if (fromHome) {
     bookUrl = `/books/${id}?from=home`;
-      } else if (fromHome) {
+  } else if (fromHome) {
     bookUrl = `/books/${id}?from=home`;
   } else if (page && page > 1) {
     bookUrl = `/books/${id}?page=${page}`;
   }
-  
-  
 
   return (
     <article className={styles.card}>

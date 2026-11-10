@@ -24,9 +24,6 @@ export default async function BookDetailsPage({
   } else if (from === "home") {
     backUrl = "/";
     backText = "← Tilbake til forsiden";
-  } else if (from === "home") {
-    backUrl = "/";
-    backText = "← Tilbake til forsiden";
   } else if (page) {
     backUrl = `/books?page=${page}`;
   }
@@ -72,9 +69,20 @@ export default async function BookDetailsPage({
               Først utgitt i {book.firstPublishYear}
             </p>
           )}
+          
+          {book.subjects && book.subjects.length > 0 && (
+            <ul className={styles.subjects} aria-label="Sjangre">
+              {book.subjects.map((subject) => (
+                <li key={subject}>{subject}</li>
+              ))}
+            </ul>
+          )}
 
           <p className={styles.description}>
             {description || "Ingen beskrivelse tilgjengelig."}
+          </p>
+            <p className={styles.dataNote}>
+            Bokdata hentes fra Open Library. Årstall og omslag kan variere noe fra det som vises i boklisten.
           </p>
         </div>
       </section>

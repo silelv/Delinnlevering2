@@ -7,6 +7,7 @@ type OpenLibraryWork = {
   description?: string | { value: string };
   covers?: number[];
   first_publish_date?: string;
+  subjects?: string[];
   authors?: {
     author: {
       key: string;
@@ -114,6 +115,9 @@ export async function getBookById(id: string): Promise<Book> {
     cover: data.covers?.[0]
       ? `https://covers.openlibrary.org/b/id/${data.covers[0]}-M.jpg`
       : undefined,
+         subjects: data.subjects
+      ?.filter((subject) => !subject.includes(":"))
+      .slice(0, 5),
   };
 
   return book;

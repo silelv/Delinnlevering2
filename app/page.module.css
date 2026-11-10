@@ -9,14 +9,6 @@
   max-width: 750px;
 }
 
-.eyebrow {
-  margin-bottom: 1rem;
-  color: var(--primary);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.15rem;
-}
-
 .heroTitle {
   margin-bottom: 1.5rem;
   color: var(--primary);

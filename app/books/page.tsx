@@ -11,10 +11,9 @@ type BooksPageProps = {
 export default async function BooksPage({ searchParams }: BooksPageProps) {
   const { q, page: pageParam } = await searchParams;
 
-  const page = Math.max(1, Number(pageParam) || 1);
+  const page = Math.max(1, Math.floor (Number(pageParam)) || 1);
   const booksPerPage = 12;
   const results = await searchBooks(q || "subject:fiction", page, booksPerPage);
-  await searchBooks(q || "subject:fantasy", page);
 
   const books = results.items;
   const totalPages = Math.ceil(results.totalItems / booksPerPage);
@@ -38,19 +37,15 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
             type="search"
             id="q"
             name="q"
-            defaultValue={genre ? "" : q ?? ""}
+            defaultValue={genre ? "" : (q ?? "")}
             placeholder="Søk etter f.eks. Fourth Wing..."
           />
 
           <button type="submit">Søk</button>
         </form>
-        {q && (
-          <h2 className={styles.resultsTitle}>
-            {q
-              ? `Søkeresultater for «${searchTitle}»`
-              : "Utvalgte bøker"}
-          </h2>
-        )}
+        <h2 className={styles.resultsTitle}>
+          {q ? `Søkeresultater for «${searchTitle}»` : "Utvalgte bøker"}
+        </h2>
 
         {books.length > 0 && (
           <p className={styles.resultsCount}>
@@ -64,7 +59,9 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
         {books.length > 0 && (
           <BookResults books={books} query={q} page={page} />
         )}
-        {totalPages > 1 && <Pagination page={page} totalPages={totalPages} query={q} />}
+        {totalPages > 1 && (
+          <Pagination page={page} totalPages={totalPages} query={q} />
+        )}
       </section>
     </div>
   );
